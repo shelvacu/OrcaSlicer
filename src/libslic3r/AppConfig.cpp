@@ -406,6 +406,13 @@ void AppConfig::set_defaults()
     if (get("print", "timelapse").empty()) {
         set_str("print", "timelapse", "1");
     }
+    if (get("do_version_check").empty()) {
+#if ORCA_VERSION_CHECK_DEFAULT = 1
+      set_bool("do_version_check", true);
+#else
+      set_bool("do_version_check", false);
+#endif
+    }
 
     // Remove legacy window positions/sizes
     erase("app", "main_frame_maximized");
